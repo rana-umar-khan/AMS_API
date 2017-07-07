@@ -11,7 +11,7 @@ namespace AMS.DAL
     internal class DBHelper : IDisposable
     {
         //String _connStr = System.Configuration.ConfigurationManager.ConnectionStrings["AttendanceDBConnStr"].ConnectionString;
-        String _connStr = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\Users\Umar Khan\Downloads\Compressed\Web API_2\AMS_DB\AMS.DAL\Database1.mdf';Integrated Security=True";
+        String _connStr = @"Server=02b200d4-39d9-47d3-a815-a7a80147e548.sqlserver.sequelizer.com;Database=db02b200d439d947d3a815a7a80147e548;User ID=bbctsnnnpcgrkkbw;Password=GxHD6xDBUpopbKGS8dPevtgF5vEMfxSh7zjYnBcLGKaCqqDaFDQvS7EnqcGH2Yww;";
         SqlConnection _con;
 
         public DBHelper()

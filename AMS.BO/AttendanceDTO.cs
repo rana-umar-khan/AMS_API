@@ -4,10 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace AMS.BO
 {
+    
+
     public class AttendanceDTO
     {
+       
         public int AttId { get; set; }
         public int AttPresents { get; set; }
         public int AttAbsents { get; set; }

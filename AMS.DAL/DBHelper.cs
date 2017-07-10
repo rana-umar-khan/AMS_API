@@ -11,7 +11,8 @@ namespace AMS.DAL
     internal class DBHelper : IDisposable
     {
         //String _connStr = System.Configuration.ConfigurationManager.ConnectionStrings["AttendanceDBConnStr"].ConnectionString;
-        String _connStr = @"Server=02b200d4-39d9-47d3-a815-a7a80147e548.sqlserver.sequelizer.com;Database=db02b200d439d947d3a815a7a80147e548;User ID=bbctsnnnpcgrkkbw;Password=GxHD6xDBUpopbKGS8dPevtgF5vEMfxSh7zjYnBcLGKaCqqDaFDQvS7EnqcGH2Yww;";
+        //String _connStr = @"Data Source=DESKTOP-QG580N4\SQLEXPRESS;Initial Catalog=attendance;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        String _connStr = "Server=ad4a8875-b4eb-45e9-8a87-a7ab0105eb53.sqlserver.sequelizer.com;Database=dbad4a8875b4eb45e98a87a7ab0105eb53;User ID=pfplubjqeinhrapl;Password=KSbit55oqVSajKV53B4MaudndK7mPn7K7rMwtXCfvnPwsuGPpkdf2wvqNVfQ6RFd";
         SqlConnection _con;
 
         public DBHelper()

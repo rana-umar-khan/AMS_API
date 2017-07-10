@@ -19,7 +19,7 @@ namespace AMS_API.Controllers
         {
             TeacherDTO tchr=  TeacherDAO.GetTeachherByUsername(name);        
             var Teacher=new { teacher=tchr};
-            return name;
+            return Teacher;
         }
 
 

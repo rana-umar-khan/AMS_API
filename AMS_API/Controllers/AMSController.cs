@@ -17,8 +17,8 @@ namespace AMS_API.Controllers
         [HttpGet]
         public Object GetTeachherByUsername(string name)
         {
-            //TeacherDTO tchr=  TeacherDAO.GetTeachherByUsername(name);        
-            //var Teacher=new { teacher=tchr};
+            TeacherDTO tchr=  TeacherDAO.GetTeachherByUsername(name);        
+            var Teacher=new { teacher=tchr};
             return name;
         }
 

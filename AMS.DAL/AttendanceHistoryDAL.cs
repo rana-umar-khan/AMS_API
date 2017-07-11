@@ -29,7 +29,7 @@ namespace AMS.DAL
 
         public static List<AttendanceHistoryDTO> GetAttendanceHistorysByAttId(int Id)
         {
-            String sqlQuery = String.Format("Select * from AttendanceHistory where AttId={0}", Id);
+            String sqlQuery = String.Format("Select * from AttendanceHistory where HisId={0}", Id);
             using (DBHelper helper = new DBHelper())
             {
                 var reader = helper.ExecuteReader(sqlQuery);

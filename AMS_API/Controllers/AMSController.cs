@@ -9,9 +9,11 @@ using System.Net.Http;
 using System.Web.Http;
 
 namespace AMS_API.Controllers
-{
+{   
     public class AMSController : ApiController
     {
+
+
 
         //http://localhost:30878/api/AMS/GetTeachherByUsername?name=ali
         [HttpGet]
@@ -43,6 +45,7 @@ namespace AMS_API.Controllers
         }
 
 
+
         //http://localhost:30878/api/AMS/GetStudentsByCouId?id=1
         [HttpGet]
         public Object GetStudentsByCouId(int id)
@@ -52,9 +55,11 @@ namespace AMS_API.Controllers
             return Students;
         }
 
+
+
         //http://localhost:30878/api/AMS/UpdateTeacher?teacher=tchr
         [HttpGet]
-        public Object UpdateTeacher(string teacher)
+        public Object UpdateTeacher1(string teacher)
         {
             //Check this
             TeacherDTO tchr = JsonConvert.DeserializeObject<TeacherDTO>(teacher);
@@ -77,7 +82,7 @@ namespace AMS_API.Controllers
         public Object IsAttendanceMarked(int CouId, string Date)
         {
             AttendanceDTO stuAtt = AttendanceDAO.GetAttendancesByCouId(CouId).First();
-            List<AttendanceHistoryDTO> attHisList = AttendanceHistoryDAL.GetAttendanceHistorysByAttId(stuAtt.AttId);
+                List<AttendanceHistoryDTO> attHisList = AttendanceHistoryDAL.GetAttendanceHistorysByAttId(stuAtt.AttId);
 
             bool toReturn = false;
 
@@ -94,7 +99,7 @@ namespace AMS_API.Controllers
 
         //http://localhost:30878/api/AMS/SaveAttendance?history=xyz
         [HttpGet]
-        public Object SaveAttendance(string history)
+        public Object SaveAttendance1(string history)
         {
             //Check this
             List<AttendanceHistoryDTO> attHis = JsonConvert.DeserializeObject<List<AttendanceHistoryDTO>>(history);
@@ -102,6 +107,53 @@ namespace AMS_API.Controllers
             for (int i = 0; i < attHis.Count; i++)
             {
                 AttendanceHistoryDTO ahd = attHis.ElementAt(i);
+                AttendanceHistoryDAL.Save(ahd);
+
+                AttendanceDTO atndnc = AttendanceDAO.GetAttendanceById(ahd.AttId);
+                if (ahd.HisIsPresent)
+                    atndnc.AttPresents++;
+                else
+                    atndnc.AttAbsents++;
+                AttendanceDAO.Save(atndnc);
+            }
+
+            var IsSaved = new { IsSaved = true };
+            return IsSaved;
+        }
+
+
+
+        //http://localhost:30878/api/AMS/UpdateTeacher?teacher=tchr
+        [HttpGet]
+        public Object UpdateTeacher(TeacherDTO teacher)
+        {
+            //Check this
+            //TeacherDTO tchr= JsonConvert.DeserializeObject<TeacherDTO>(teacher);
+
+            int c = TeacherDAO.Save(teacher);
+
+            bool status = true;
+            if (c > 1)
+                status = true;
+            else
+                status = false;
+
+            var Status = new { IsUpdated = status };
+            return Status;
+        }
+
+
+
+        //http://localhost:30878/api/AMS/SaveAttendance?history=xyz
+        [HttpGet]
+        public Object SaveAttendance(List<AttendanceHistoryDTO> history)
+        {
+            //Check this
+            //List<AttendanceHistoryDTO> attHis = JsonConvert.DeserializeObject<List<AttendanceHistoryDTO>>(history);
+
+            for (int i = 0; i < history.Count; i++)
+            {
+                AttendanceHistoryDTO ahd = history.ElementAt(i);
                 AttendanceHistoryDAL.Save(ahd);
 
                 AttendanceDTO atndnc = AttendanceDAO.GetAttendanceById(ahd.AttId);

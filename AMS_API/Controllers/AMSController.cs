@@ -88,7 +88,7 @@ namespace AMS_API.Controllers
 
             foreach (AttendanceHistoryDTO ah in attHisList)
             {
-                if (ah.HisDateTime.Date.ToString().Equals(Date))
+                if (ah.HisDateTime==Date)
                     toReturn = true;
             }
 
@@ -124,28 +124,29 @@ namespace AMS_API.Controllers
 
 
         //http://localhost:30878/api/AMS/UpdateTeacher?teacher=tchr
-        [HttpGet]
-        public Object UpdateTeacher(TeacherDTO teacher)
+        [HttpPost]
+        public bool UpdateTeacher(TeacherDTO teacher)
         {
             //Check this
             //TeacherDTO tchr= JsonConvert.DeserializeObject<TeacherDTO>(teacher);
 
             int c = TeacherDAO.Save(teacher);
 
-            bool status = true;
-            if (c > 1)
-                status = true;
+            //bool status = true;
+            if (c > 0)
+                return true;
             else
-                status = false;
+                return false;
 
-            var Status = new { IsUpdated = status };
-            return Status;
+            //var Status = new { IsUpdated = status };
+            //return new HttpResponseMessage(HttpStatusCode.Accepted);
+            //return Status;
         }
 
 
 
         //http://localhost:30878/api/AMS/SaveAttendance?history=xyz
-        [HttpGet]
+        [HttpPost]
         public Object SaveAttendance(List<AttendanceHistoryDTO> history)
         {
             //Check this
@@ -164,7 +165,7 @@ namespace AMS_API.Controllers
                 AttendanceDAO.Save(atndnc);
             }
 
-            var IsSaved = new { IsSaved = true };
+            var IsSaved= true ;
             return IsSaved;
         }
 

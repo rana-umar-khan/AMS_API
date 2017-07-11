@@ -8,6 +8,7 @@ namespace AMS.BO
 {
     public class TeacherDTO
     {
+        //{"TeaId":1,"TeaUsername":"ali","TeaPassword":"123","TeaFirstName":"Ali","TeaLastName":"Ahmad","TeaEmail":"123@abc.xyz","TeaContactNo":"03213456789"}
         public int TeaId { get; set; }
         public string TeaUsername { get; set; }
         public string TeaPassword { get; set; }

@@ -60,7 +60,7 @@ namespace AMS.DAL
             {
                 int HisId = GetAutoIncerment();
                 sqlQuery = String.Format("Insert into AttendanceHistory (HisId, HisDateTime , HisIsPresent , AttId ) values({0},'{1}',{2},{3} )",
-                    HisId, dto.HisDateTime, isPresent, dto.AttId);
+                    HisId,"2017-07-11", isPresent, dto.AttId);
             }
             using (DBHelper helper = new DBHelper())
             {
@@ -72,7 +72,7 @@ namespace AMS.DAL
         {
             AttendanceHistoryDTO dto = new AttendanceHistoryDTO();
             dto.HisId = reader.GetInt32(0);
-            dto.HisDateTime = reader.GetDateTime(1);
+            dto.HisDateTime = reader.GetDateTime(1).ToString();
             dto.HisIsPresent = reader.GetBoolean(2);
             dto.AttId = reader.GetInt32(3);
             return dto;

@@ -9,7 +9,7 @@ namespace AMS.BO
     public class AttendanceHistoryDTO
     {
         public int HisId { get; set; }
-        public DateTime HisDateTime { get; set; }
+        public string HisDateTime { get; set; }
         public bool HisIsPresent { get; set; }
         public int AttId { get; set; }
     }
